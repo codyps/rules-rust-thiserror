@@ -27,3 +27,19 @@ crates_repository(
 load("@crate_index//:defs.bzl", "crate_repositories")
 
 crate_repositories()
+
+# NIX STUFF
+http_archive(
+    name = "io_tweag_rules_nixpkgs",
+    strip_prefix = "rules_nixpkgs-420370f64f03ed9c1ff9b5e2994d06c0439cb1f2",
+    urls = ["https://github.com/tweag/rules_nixpkgs/archive/420370f64f03ed9c1ff9b5e2994d06c0439cb1f2.tar.gz"],
+    sha256 = "5270e14b2965408f4ea51b2f76774525b086be6f00de0da4082d14a69017c5e4"
+)
+
+load("@io_tweag_rules_nixpkgs//nixpkgs:repositories.bzl", "rules_nixpkgs_dependencies")
+rules_nixpkgs_dependencies()
+
+load("@io_tweag_rules_nixpkgs//nixpkgs:nixpkgs.bzl", "nixpkgs_git_repository", "nixpkgs_package", "nixpkgs_cc_configure")
+
+load("@io_tweag_rules_nixpkgs//nixpkgs:toolchains/rust.bzl", "nixpkgs_rust_configure")
+nixpkgs_rust_configure()
