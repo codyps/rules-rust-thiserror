@@ -14,7 +14,6 @@
         devShell = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [
             bazel
-            bazel-watcher
           ];
         };
       }
