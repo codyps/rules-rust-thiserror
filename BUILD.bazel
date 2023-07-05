@@ -1,0 +1,27 @@
+load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_library")
+load("@crate_index//:defs.bzl", "aliases", "all_crate_deps")
+
+rust_binary(
+    name = "bin",
+    srcs = glob(["src/main.rs"]),
+    edition = "2021",
+    aliases = aliases(),
+    deps = all_crate_deps(
+	    normal = True
+    ),
+    proc_macro_deps = all_crate_deps(
+        proc_macro = True,
+    ),
+)
+
+rust_library(
+    name = "rules-rust-thiserror",
+    srcs = glob(["src/lib.rs"]),
+    edition = "2021",
+    deps = all_crate_deps(
+        normal = True,
+    ),
+    proc_macro_deps = all_crate_deps(
+        proc_macro = True,
+    ),
+)
